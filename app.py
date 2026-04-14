@@ -54,7 +54,7 @@ FAISS_INDEX_DIR = "./faiss_index"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 LLM_MODEL = "qwen/qwen3.6-plus-preview:free"
-EMBEDDING_MODEL = "openrouter/free"
+EMBEDDING_MODEL = "nvidia/llama-nemotron-embed-vl-1b-v2:free"
 
 # ⚠️ 请替换为您的实际 Streamlit Cloud 域名
 APP_URL = "https://microplastics-rag-cjwang.streamlit.app"

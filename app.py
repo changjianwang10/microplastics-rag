@@ -54,7 +54,7 @@ FAISS_INDEX_DIR = "./faiss_index"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 LLM_MODEL = "qwen/qwen3.6-plus-preview:free"
-EMBEDDING_MODEL = "nvidia/llama-nemotron-embed-vl-1b-v2:free"
+EMBEDDING_MODEL = "text-embedding-v4"
 
 # ⚠️ 请替换为您的实际 Streamlit Cloud 域名
 APP_URL = "https://microplastics-rag-cjwang.streamlit.app"
@@ -84,15 +84,22 @@ def load_vectorstore():
         if not Path(FAISS_INDEX_DIR).exists():
             st.error(f"❌ FAISS 索引目录不存在: {FAISS_INDEX_DIR}")
             st.stop()
-
         embeddings = OpenAIEmbeddings(
             model=EMBEDDING_MODEL,
             api_key=OPENROUTER_API_KEY,
-            base_url="https://openrouter.ai/api/v1",
+            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             default_headers={
                 "HTTP-Referer": APP_URL,
                 "X-Title": "Microplastics RAG QA"
             }
+        # embeddings = OpenAIEmbeddings(
+        #     model=EMBEDDING_MODEL,
+        #     api_key=OPENROUTER_API_KEY,
+        #     base_url="https://openrouter.ai/api/v1",
+        #     default_headers={
+        #         "HTTP-Referer": APP_URL,
+        #         "X-Title": "Microplastics RAG QA"
+        #     }
         )
         vectorstore = FAISS.load_local(
             FAISS_INDEX_DIR,

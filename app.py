@@ -1,7 +1,28 @@
 # app.py
-import streamlit as st
-import os
 import sys
+import locale
+import os
+
+# 强制设置环境变量
+os.environ["PYTHONIOENCODING"] = "utf-8"
+os.environ["LC_ALL"] = "C.UTF-8"
+os.environ["LANG"] = "C.UTF-8"
+
+# 重新加载 sys 编码（如果可能）
+if hasattr(sys, "setdefaultencoding"):
+    sys.setdefaultencoding("utf-8")
+else:
+    # Python 3 已经移除了 setdefaultencoding，但通过以下 hack 可以部分解决
+    import importlib
+    importlib.reload(sys)
+
+# 设置 locale（如果可用）
+try:
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+except:
+    pass
+
+import streamlit as st
 from pathlib import Path
 from dotenv import load_dotenv
 from langchain_community.vectorstores import FAISS

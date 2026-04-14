@@ -87,9 +87,8 @@ def load_vectorstore():
             st.stop()
         embeddings = DashScopeEmbeddings(
             model=EMBEDDING_MODEL,
-            dashscope_api_key=DASHSCOPE_API_KEY,
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
-            
+            dashscope_api_key=DASHSCOPE_API_KEY
+                        
         # embeddings = OpenAIEmbeddings(
         #     model=EMBEDDING_MODEL,
         #     api_key=OPENROUTER_API_KEY,

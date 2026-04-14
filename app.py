@@ -52,7 +52,7 @@ load_dotenv()
 # ==================== 配置部分（请修改） ====================
 FAISS_INDEX_DIR = "./faiss_index"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
 LLM_MODEL = "qwen/qwen3.6-plus-preview:free"
 EMBEDDING_MODEL = "text-embedding-v4"
 
@@ -86,7 +86,7 @@ def load_vectorstore():
             st.stop()
         embeddings = OpenAIEmbeddings(
             model=EMBEDDING_MODEL,
-            api_key=OPENROUTER_API_KEY,
+            api_key=DASHSCOPE_API_KEY,
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
             default_headers={
                 "HTTP-Referer": APP_URL,

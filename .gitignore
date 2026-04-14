@@ -1,0 +1,53 @@
+# 虚拟环境目录
+venv/
+env/
+rag_env/
+.venv/
+
+# Python 缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 环境变量文件（包含真实 API 密钥）
+.env
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE 配置文件（可选）
+.vscode/
+.idea/
+
+# 日志文件
+*.log
+
+# 原始文献文件夹（如果还在项目里）
+papers_cleaned/
+papers_md/
+chroma_db/
+chroma_db_cloud/
+papers/
+papers_cleaned/
+papers_md/
+
+#其它
+app1.py
+bailian_app.py
+bailian_build_kb.py
+bailian-extract.py
+build_kb.py
+clean_md_files.py
+extract_text.py
+extracted_conditions_bailian.xlsx
+extracted_triplets_bailian.xlsx
+FAISS_bailiankb.py
+falssapp.py
+import_to_neo4j.py
+MinerU.py
+ner_extraction.py
+prompt_template.txt
+zhipu_parse_pdfs.py

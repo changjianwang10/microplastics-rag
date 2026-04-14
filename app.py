@@ -42,6 +42,7 @@ import streamlit as st
 from pathlib import Path
 from dotenv import load_dotenv
 from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import DashScopeEmbeddings
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -84,7 +85,7 @@ def load_vectorstore():
         if not Path(FAISS_INDEX_DIR).exists():
             st.error(f"❌ FAISS 索引目录不存在: {FAISS_INDEX_DIR}")
             st.stop()
-        embeddings = OpenAIEmbeddings(
+        embeddings = DashScopeEmbeddings(
             model=EMBEDDING_MODEL,
             api_key=DASHSCOPE_API_KEY,
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",

@@ -54,7 +54,7 @@ load_dotenv()
 FAISS_INDEX_DIR = "./faiss_index"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
-LLM_MODEL = "google/gemini-2.0-flash-exp:free"
+LLM_MODEL = "openrouter/free"
 EMBEDDING_MODEL = "text-embedding-v4"
 
 # ⚠️ 请替换为您的实际 Streamlit Cloud 域名

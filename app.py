@@ -88,7 +88,7 @@ def load_vectorstore():
         embeddings = DashScopeEmbeddings(
             model=EMBEDDING_MODEL,
             dashscope_api_key=DASHSCOPE_API_KEY,
-            dimensions=1024   # 尝试调整为与 v3 一致的维度
+            dimension=1024   # 尝试调整为与 v3 一致的维度
                         
         # embeddings = OpenAIEmbeddings(
         #     model=EMBEDDING_MODEL,
@@ -175,7 +175,7 @@ def get_rag_chain(vectorstore):
 # ==================== Streamlit 界面 ====================
 st.set_page_config(page_title="微塑料降解机理问答", page_icon="🔬")
 st.title("🔬 微塑料降解机理文献问答")
-st.markdown("本助手基于 OpenRouter 免费大模型构建。请提问关于 **降解机理** 的问题。")
+st.markdown("本助手基于 OpenRouter 的大模型API构建。请提问关于 **降解机理** 的问题。")
 
 @st.cache_resource
 def init_rag_system():

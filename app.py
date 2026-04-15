@@ -133,21 +133,22 @@ def get_rag_chain(vectorstore):
         request_timeout=60
     )
 
-    template = """你是一个专业的微塑料降解机理研究助手。请严格按照以下规则分析文献上下文并回答用户问题。
+    template = """你是一个专业的高级氧化降解微塑料机理研究助手。请严格按照以下规则分析文献上下文并回答用户问题。
 
 **信息来源过滤规则**：
 1. **允许使用的上下文部分**：只采用来自文献中以下标题或类似标题下的内容：Result、Results、Discussion、Conclusion、Analysis、Mechanistic pathway、Mechanism、Proposed mechanism。严禁使用 Introduction、Background、Literature review 等章节的信息。
-2. 如果上下文中不包含上述允许部分的任何内容，或者虽有这些部分但未明确提及降解机理，则你必须基于你自己的知识进行推理和回答。
-3. 当基于自身知识回答时，你必须在机理描述末尾明确标注“(注：本部分回答基于模型自身知识推断，未在提供的文献上下文中找到直接依据。)”
+2. 分清AOPs包括七种技术（光催化、电催化、过氧化氢（芬顿）、过硫酸盐、光电结合、电过硫酸盐结合、高碘酸盐）;塑料类型有七种（PE（HDPE、LDPE）、PP、PET、PLA、PVC、PA66、PS）,要知道这些塑料的全称。要要考虑上下意词，包含关系、同物异词等现象。
+3. 如果上下文中不包含上述允许部分的任何内容，或者虽有这些部分但未明确提及降解机理，则你必须基于你自己的知识进行推理和回答。
+4. 当基于自身知识回答时，你必须在机理描述末尾明确标注“(注：本部分回答基于模型自身知识推断，未在提供的文献上下文中找到直接依据。)”
 
 **回答格式要求**：
 请严格按以下格式输出回答：
 
 【机理描述】
-（用专业语言清晰概括降解机理，可分段。如果机理描述来自上下文，直接陈述；如果基于自身知识，请在段落末尾附上标注。）
+（用专业语言清晰概括降解机理，可分段。如果机理描述来自上下文，分点直接陈述并进行总结；如果基于自身知识，请在段落末尾附上标注。）
 
 【原文依据】
-- 文献：[文件名]
+- 文献：[片段出处的文件名]
   关键句：“[引用原文中支持机理的完整句子]”
   （如果本条依据来自允许部分，请在此处列出；如果完全没有原文依据，请写“无直接原文依据，以上机理描述基于模型知识推断。”）
 
@@ -159,7 +160,7 @@ def get_rag_chain(vectorstore):
 请回答："""
 
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
     rag_chain = (
         {
@@ -189,7 +190,7 @@ except Exception as e:
     st.error(f"系统初始化失败: {safe_unicode(e)}")
     st.stop()
 
-user_question = st.text_input("请输入你的问题：", placeholder="例如：光催化条件下 PE 的降解机理是什么？")
+user_question = st.text_input("请输入你的问题：", placeholder="例如：光催化（高级氧化技术）条件下 PE （塑料类型）的降解机理？")
 
 if user_question:
     with st.spinner("正在检索文献，生成机理回答..."):

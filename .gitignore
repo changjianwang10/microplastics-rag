@@ -33,7 +33,7 @@ chroma_db_cloud/
 papers/
 papers_cleaned/
 papers_md/
-
+old_v3faiss/
 #其它
 app1.py
 bailian_app.py
@@ -51,3 +51,5 @@ MinerU.py
 ner_extraction.py
 prompt_template.txt
 zhipu_parse_pdfs.py
+embedding_cache.json
+NEWFAISS_bailiankb copy.py

@@ -87,8 +87,8 @@ def load_vectorstore():
             st.stop()
         embeddings = DashScopeEmbeddings(
             model=EMBEDDING_MODEL,
-            dashscope_api_key=DASHSCOPE_API_KEY,
-            dimension=1024   # 尝试调整为与 v3 一致的维度
+            dashscope_api_key=DASHSCOPE_API_KEY
+            #dimension=1024   # 尝试调整为与 v3 一致的维度
                         
         # embeddings = OpenAIEmbeddings(
         #     model=EMBEDDING_MODEL,
